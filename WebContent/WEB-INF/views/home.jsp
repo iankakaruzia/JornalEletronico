@@ -51,7 +51,7 @@
     </section>
 
     <aside id="lateral">
-        <h2>Classificados</h2>
+        <h2>Ações</h2>
     </aside>
 
     <footer id="rodape">

@@ -102,6 +102,7 @@ public class NoticiaController {
 		return "noticia/alterarNoticiaFormulario";
 	}
 	
+	@RequestMapping("/alterarNoticia")
 	public String alterarNoticia(Noticia n, Long idUsuario){
 		if(idUsuario == n.getAutId()){
 			this.nDAO.alterar(n);
