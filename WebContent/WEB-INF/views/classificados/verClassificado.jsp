@@ -1,11 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html lang="pt-br">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Inserir Seção</title>
+    <meta charset="UTF-8">
+    <title>${classificados.titulo}</title>
     <link rel="stylesheet" type="text/css" href="resources/css/estilos.css"/>
     <link rel="stylesheet" type="text/css" href="resources/css/formularios.css"/>
 </head>
@@ -18,8 +17,8 @@
         <nav id="menu">
             <ul>
                 <li>Home</li>
-                <li>Seções</li>
-                <li>Classificados</li>
+                <li><a href="listarSecao">SeÃ§Ãµes</a></li>
+                <li><a href="listarClassificados">Classificados</a></li>
             </ul>
         </nav>
         <nav id="login">
@@ -35,19 +34,24 @@
         </nav>
     </header>
     <section id="corpo-full">
-        <h2>Inserir Seção</h2>
-        <form action="inserirSecao" method="post">
-            <p><label for="cTitulo">Titulo:</label><input type="text" name="titulo" id="cTitulo" size="50" placeholder="Titulo da Seção"/></p>
-            <p><label for="cDescricao">Descrição:</label>
-            <textarea name="descricao" id="cDescricao" rows="3" cols="30" placeholder="Descrição da Seção"></textarea></p>
-            <input type="submit" value="ENVIAR"/>
-        </form>
 
+        <header id="noticia">
+            <hgroup>
+                <h1>${classificados.titulo}</h1>
+                <h1 class="subtitulo">PreÃ§o: R$ ${classificados.preco}</h1>
+                <h2>por ${classificados.usuario.nome}</h2>
+            </hgroup>
+        </header>
+            <p>
+                ${classificados.texto}
+            </p>
+		<h4>Melhor oferta atÃ© o momento: ${classificados.melhor_oferta}</h4>
+        
     </section>
 
     <footer id="rodape">
-        <p>UFC - Universidade Federal do Ceará <br/>
-            por Ianka Karúzia</p>
+        <p>UFC - Universidade Federal do CearÃ¡ <br/>
+            por Ianka KarÃºzia</p>
     </footer>
 </div>
 </body>

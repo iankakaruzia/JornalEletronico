@@ -36,7 +36,7 @@ public class ComentariosController {
 	
 	@RequestMapping("/inserirComentarioFormulario")
 	public String inserirComentarioFormulario(){
-		return "comentarios/inserirComentarioFormulario";
+		return "redirect:lerNoticia";
 	}
 	
 	@RequestMapping("/inserirComentario")
@@ -48,16 +48,16 @@ public class ComentariosController {
 			c.setNoticia(n);
 			c.setUsuario(u);
 			this.comDAO.inserir(c);
-			return "cadastroOK";
+			return "redirect:lerNoticia";
 		}
-		return "redirect:inserirComentarioFormulario";
+		return "redirect:lerNoticia";
 	}
 	
 	@RequestMapping("/listarComentarios")
 	public String listarComentarios(Model model){
 		List<Comentarios> comentarios = this.comDAO.listar();
 		model.addAttribute("comentarios", comentarios);
-		return "comentarios/listarComentarios";
+		return "redirect:lerNoticia";
 	}
 	
 	@RequestMapping("/apagarComentario")
@@ -67,12 +67,12 @@ public class ComentariosController {
 		Usuario editor = (Usuario) session.getAttribute("editor");
 		if(editor != null){
 			this.comDAO.apagar(idCom);
-			return "redirect:listarComentarios";
+			return "redirect:lerNoticia";
 		}else if(idUsuario == leitor.getUsuId()){
 			this.comDAO.apagar(idCom);
-			return "redirect:listarComentarios";
+			return "redirect:lerNoticia";
 		}
-		return "redirect:listarComentarios";
+		return "redirect:lerNoticia";
 	}
 	
 	@RequestMapping("/alterarComentarioFormulario")

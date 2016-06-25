@@ -2,29 +2,62 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Inserir Notícia</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Inserir Noticia</title>
+    <link rel="stylesheet" type="text/css" href="resources/css/estilos.css"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/formularios.css"/>
 </head>
 <body>
-		<h1>Jornal Eletrônico</h1>
-		<br />
-		<br />
-		<form action="inserirNoticia" method="post">
-			<input type="hidden" name="idUsuario" value="${jornalista.usuId}"><br />
-			Titulo:<input type="text" name="titulo"/><br />
-			Subtítulo:<input type="text" name="subtitulo"/><br />
-			Texto:<textarea name="texto" rows="15" cols="40" placeholder="Escreva aqui a sua Notícia"></textarea>
-			<br/>
-			<p>Seção:</p>
-			<select name="idSecao">	
-				<c:forEach var="secao" items="${secoes}">
-					<option value="${secao.secId}">${secao.titulo}</option>
-				</c:forEach>
-			</select>               
-			<br/>
-			<input type="submit" value="ENVIAR">
-		</form>
+
+<div id="interface">
+    <header id="cabecalho">
+        <h1>MN News</h1>
+        <img id="icone" src="resources/images/noticias0031842016155522.jpg"/>
+        <nav id="menu">
+            <ul>
+                <li>Home</li>
+                <li>Seções</li>
+                <li>Classificados</li>
+            </ul>
+        </nav>
+        <nav id="login">
+            <ul>
+            	<c:if test="${usuario == null}">
+                	<li><a href="loginUsuarioFormulario">Logar-se</a></li>
+                	<li><a href="inserirLeitorFormulario">Cadastrar-se</a></li>
+                </c:if>
+                <c:if test="${usuario!=null}">
+                	<li><a href="logout">Sair do Jornal</a></li>
+                </c:if>
+            </ul>
+        </nav>
+    </header>
+    <section id="corpo-full">
+        <h2>Inserir Noticia</h2>
+        <form action="inserirNoticia" method="post">
+        	<input type="hidden" name="idUsuario" value="${jornalista.usuId}" />
+            <p><label for="cTitulo">Titulo:</label><input type="text" name="titulo" id="cTitulo" size="50" placeholder="Titulo da Notícia"/></p>
+            <p><label for="cSubtitulo">Subtítulo:</label><input type="text" name="subtitulo" id="cSubtitulo" size="50" placeholder="Subtítulo da Notícia"/></p>
+            <p><label for="cTexto">Texto:</label>
+            <textarea name="texto" id="cTexto" cols="85" rows="15" placeholder="Escreva aqui a sua Notícia"></textarea></p>
+            <p><label for="cSecao">Seção:</label>
+                <select name="idSecao" id="cSecao">
+                    <c:forEach var="s" items="${secoes}">
+                    	<option value="${s.secId}">${s.titulo}</option>
+                    </c:forEach>
+                </select>
+            </p>
+            <input type="submit" value="ENVIAR"/>
+        </form>
+
+    </section>
+
+    <footer id="rodape">
+        <p>UFC - Universidade Federal do Ceará <br/>
+            por Ianka Karúzia</p>
+    </footer>
+</div>
 </body>
 </html>

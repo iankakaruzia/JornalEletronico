@@ -42,6 +42,9 @@ public class Classificados {
 	@Column(name="AUT_ID", insertable=false, updatable=false)
 	private Long autId;
 	
+	@Column(name="AUT_MELHOR_OFERTA")
+	private Long autMelhorOferta;
+	
 	@ManyToOne(optional=false)
 	@JoinColumn(name="AUT_ID", referencedColumnName="USU_ID")
 	private Usuario usuario;
@@ -122,6 +125,14 @@ public class Classificados {
 		this.usuario = usuario;
 	}
 	
+	public Long getAutMelhorOferta() {
+		return autMelhorOferta;
+	}
+
+	public void setAutMelhorOferta(Long autMelhorOferta) {
+		this.autMelhorOferta = autMelhorOferta;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof Classificados))

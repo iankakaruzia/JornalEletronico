@@ -108,7 +108,77 @@ section#corpo{
     padding-right: 15px;
 }
 
+table#tabela{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #606060;
+	border-spacing: 0px;
+	text-align: center;
+	vertical-align: center;
+}
+
+table#tabela td{
+	border: 1px solid #606060;
+	padding: 10px;
+	text-align: center;
+	vertical-align: middle;
+
+}
+
+section#corpo-full ul{
+    list-style: disc;
+    border-bottom: 1px dashed black;
+}
+
+section#corpo-full ul li div#titulo h1{
+    font-size: 18pt;
+    margin: 0px;
+}
+
+section#corpo-full ul li div#titulo h3{
+    color: #606060;
+    font-size: 13pt;
+    margin: 0px;
+    text-indent: 35px;
+}
+
+section#corpo-full ul li div#titulo a{
+    font-size: 12pt;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    color: #888888;
+}
+
+header#noticia h1{
+    font-family: Arial, sans-serif;
+    font-size: 20pt;
+    color: #606060;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+header#noticia h1.subtitulo{
+    font-size: 15pt;
+}
+
+.direita{
+    text-align: right;
+}
+
+header#noticia h2{
+    font-size: 13pt;
+    color: #cecece;
+    background-color: #ffffff;
+    margin: 0px;
+}
+
+header#noticia h3{
+    font-size: 13pt;
+    color: #606060;
+}
+
 aside#lateral{
+    text-align: center;
     display: block;
     width: 510px;
     float: right;
@@ -116,6 +186,14 @@ aside#lateral{
     padding: 10px;
     margin-top: 15px;
     box-shadow: 2px 2px 2px rgba(0,0,0,.5);
+}
+
+aside#lateral ul{
+    list-style: none;
+}
+
+aside#lateral a{
+    color: black;
 }
 
 footer#rodape{

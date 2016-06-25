@@ -87,9 +87,9 @@ public class ClassificadosController {
 	}
 	
 	@RequestMapping("/verClassificado")
-	public String verClassificado(Classificados c, Model model){
-		Classificados cla = this.claDAO.recuperar(c.getClaId());
-		model.addAttribute("classificados", cla);
+	public String verClassificado(Classificados cla, Model model){
+		Classificados cla2 = this.claDAO.recuperar(cla.getClaId());
+		model.addAttribute("classificados", cla2);
 		return "classificados/verClassificado";
 	}
 	
@@ -98,6 +98,4 @@ public class ClassificadosController {
 		return "cadastroOK";
 	}
 	
-	
-
 }

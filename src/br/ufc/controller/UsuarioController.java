@@ -67,7 +67,7 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping("/inserirJornalista")
-	public String inserirJornalista(Usuario u, HttpSession session){
+	public String inserirJornalista(Usuario u){
 		String senhaC = criptografa(u.getSenha());
 		u.setSenha(senhaC);
 		
@@ -83,7 +83,7 @@ public class UsuarioController {
 		List<Usuario> usuarios = this.uDAO.listar();
 		model.addAttribute("usuarios", usuarios);
 		
-		return "noticia/listarUsuario";
+		return "usuario/listarUsuario";
 	}
 	
 	@RequestMapping("/apagarUsuario")

@@ -16,8 +16,8 @@
         <nav id="menu">
             <ul>
                 <li>Home</li>
-                <li>Seções</li>
-                <li>Classificados</li>
+                <li><a href="listarSecao">Seções</a></li>
+                <li><a href="listarClassificados">Classificados</a></li>
             </ul>
         </nav>
         <nav id="login">
@@ -36,22 +36,37 @@
     <section id="corpo">
         <h2>Manchetes</h2>	
 		<ul>
-			<c:forEach var="noticia" items="${noticias}">
-				  <li>
-				     <h1> ${noticia.titulo}  </h1>
-				  </li>
-				  <li>  
-	                 <h3> ${noticia.subtitulo}</h3>
-	              </li> 
-	              <li>    
+			<c:forEach var="noticia" items="${nots}">
+				 <li>
+				  <div id="titulo">
+				     <h1> ${noticia.titulo}  </h1>  
+	                 <h3> ${noticia.subtitulo}</h3> <br>     
 	                 <a href="lerNoticia?notId=${noticia.notId}"> Ler Noticia Completa</a> <br>
-	              </li>
+	              </div>
+				 </li>
 			</c:forEach>
 		</ul>
     </section>
 
     <aside id="lateral">
         <h2>Ações</h2>
+        <ul>
+        	<c:if test="${editor!=null}">
+        		<li><a href="inserirSecaoFormulario">Cadastrar Seção</a></li>
+        		<li><a href="listarSecao">Listar Seções</a></li>
+        		<li><a href="inserirJornalistaFormulario">Cadastrar Jornalista</a></li>
+        		<li><a href="listarUsuario">Listar Usuarios</a></li>
+        	</c:if>
+			<c:if test="${jornalista!=null}">
+        		<li><a href="inserirNoticiaFormulario">Cadastrar Notícia</a></li>
+        	</c:if>
+        	<c:if test="${usuario==null}">
+        		<li>Nenhuma ação a ser exibida.</li>
+        	</c:if>
+        	<c:if test="${leitor!=null}">
+        		<li><a href="inserirClassificadoFormulario">Cadastrar Classificado</a></li>
+        	</c:if>
+        </ul>
     </aside>
 
     <footer id="rodape">

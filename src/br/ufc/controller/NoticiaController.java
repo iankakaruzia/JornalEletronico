@@ -69,8 +69,8 @@ public class NoticiaController {
 	@RequestMapping("/listarNoticia")
 	public String listarNoticia(Model model){
 		List<Noticia> noticias = this.nDAO.listar();
-		model.addAttribute("noticias", noticias);
-		return "redirect:/";
+		model.addAttribute("nots", noticias);
+		return "redirect:home";
 	}
 	
 	@RequestMapping("/lerNoticia")
