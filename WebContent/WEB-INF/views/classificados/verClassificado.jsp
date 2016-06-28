@@ -23,31 +23,53 @@
         </nav>
         <nav id="login">
             <ul>
-            	<c:if test="${usuario == null}">
+            	<c:if test="${leitor == null}">
                 	<li><a href="loginUsuarioFormulario">Logar-se</a></li>
                 	<li><a href="inserirLeitorFormulario">Cadastrar-se</a></li>
                 </c:if>
-                <c:if test="${usuario!=null}">
+                <c:if test="${leitor!=null}">
                 	<li><a href="logout">Sair do Jornal</a></li>
                 </c:if>
-            </ul>
+            </ul>	
         </nav>
     </header>
-    <section id="corpo-full">
+    <section id="corpo">
 
         <header id="noticia">
             <hgroup>
                 <h1>${classificados.titulo}</h1>
                 <h1 class="subtitulo">Preço: R$ ${classificados.preco}</h1>
-                <h2>por ${classificados.usuario.nome}</h2>
+                <h2>por ${classificados.u.nome}</h2>
             </hgroup>
         </header>
             <p>
                 ${classificados.texto}
             </p>
 		<h4>Melhor oferta até o momento: ${classificados.melhor_oferta}</h4>
-        
+		
+		<c:if test="${leitor!=null}">
+			<c:if test="${leitor.usuId == classificados.autId}">
+				<a href="alterarClassificadoFormulario?idCla=${classificados.claId}">Alterar Classificado</a><br />
+				<a href="apagarClassificado?">Apagar Classificado</a>
+			</c:if>
+        </c:if>
     </section>
+    
+    <aside id="lateral">
+    	<h2>Dar Oferta</h2>
+    	<c:if test="${leitor != null}">
+	    	<form action="inserirOferta">
+	    		<input type="hidden" name="idUsuario" value="${leitor.usuId}" />
+	    		<input type="hidden" name="idCla" value="${classificados.claId}" />
+	    		<p><label for="cValor">Valor da Oferta: </label><input type="text" name="valor" id="cValor" size="15" placeholder="Valor da Oferta"/></p>
+	    		<input type="submit" value="Dar Oferta" />
+	    	</form>
+    	</c:if>
+    	<c:if test="${leitor==null}">
+    		<h4>Logue-se para dar um lance no classificado.</h4>
+    	</c:if>
+    	
+    </aside>
 
     <footer id="rodape">
         <p>UFC - Universidade Federal do Ceará <br/>

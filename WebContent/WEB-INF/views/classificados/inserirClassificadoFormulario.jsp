@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,7 +18,7 @@
         <nav id="menu">
             <ul>
                 <li>Home</li>
-                <li><a href="listarSecao">SeÃ§Ãµes</a></li>
+                <li><a href="listarSecao">Seções</a></li>
                 <li><a href="listarClassificados">Classificados</a></li>
             </ul>
         </nav>
@@ -38,15 +38,15 @@
             <p><label for="cTexto">Texto:</label>
                 <textarea name="texto" id="cTexto" cols="45" rows="8" placeholder="Escreva aqui o texto do seu classificado"></textarea></p>
             <p><label for="cTelefone">Telefone:</label><input type="text" name="telefone" id="cTelefone" size="25" placeholder="Telefone para Contato"/></p>
-            <p><label for="cPreco">PreÃ§o:</label><input type="text" name="preco" id="cPreco" size="15" placeholder="PreÃ§o"/></p>
+            <p><label for="cPreco">Preço:</label><input type="text" name="preco" id="cPreco" size="15" placeholder="Preço"/></p>
             <input type="submit" value="ENVIAR"/>
         </form>
 
     </section>
 
     <footer id="rodape">
-        <p>UFC - Universidade Federal do CearÃ¡ <br/>
-            por Ianka KarÃºzia</p>
+        <p>UFC - Universidade Federal do Ceará <br/>
+            por Ianka Karúzia</p>
     </footer>
 </div>
 </body>

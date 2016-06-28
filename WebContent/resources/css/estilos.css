@@ -197,6 +197,7 @@ aside#lateral a{
 }
 
 footer#rodape{
+	margin-top: 15px;
     clear: both;
     border-top: 1px solid #606060;
 }

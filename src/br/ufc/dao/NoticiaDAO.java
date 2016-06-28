@@ -37,7 +37,7 @@ public class NoticiaDAO {
 	}
 	
 	public List<Noticia> listar(){
-		String hql = "select n from NOTICIA as n";
+		String hql = "select n from NOTICIA as n order by notId desc";
 		return manager.createQuery(hql, Noticia.class).getResultList();
 	}
 	
@@ -51,7 +51,7 @@ public class NoticiaDAO {
 	}
 	
 	public List<Noticia> noticiaSecao(Long idSecao){
-		String hql = "select n from NOTICIA as n where sec_id=:varSecao";
+		String hql = "select n from NOTICIA as n where sec_id=:varSecao order by notId desc";
 		Query query = manager.createQuery(hql);
 		List<Noticia> noticias = query.setParameter("varSecao", idSecao).getResultList();
 		return noticias;

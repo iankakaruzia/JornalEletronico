@@ -48,7 +48,7 @@ public class Noticia {
 	
 	@ManyToOne(optional=false)
 	@JoinColumn(name="AUT_ID", referencedColumnName="USU_ID")
-	private Usuario usuario;
+	private Usuario u;
 	
 	@OneToMany(mappedBy="noticia", targetEntity=Comentarios.class, fetch=FetchType.EAGER)
 	private List<Comentarios> comentarios;
@@ -120,13 +120,13 @@ public class Noticia {
 	public void setSecao(Secao secao) {
 		this.secao = secao;
 	}
-
-	public Usuario getUsuario() {
-		return usuario;
+	
+	public Usuario getU() {
+		return u;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setU(Usuario u) {
+		this.u = u;
 	}
 
 	public List<Comentarios> getComentarios() {

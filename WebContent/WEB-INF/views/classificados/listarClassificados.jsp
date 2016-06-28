@@ -36,7 +36,7 @@
 			<li>
 				<div id="titulo">
 			     <h1> ${c.titulo}  </h1>
-			     <h3>por R$ ${c.preco}</h3>    
+			     <h3>Preço: R$ ${c.preco}</h3>  
                  <a href="verClassificado?claId=${c.claId}">Visualizar Classificado</a> <br>
               </div>
              </li>

@@ -36,19 +36,20 @@
     </header>
     <section id="corpo-full">
         <h2>Inserir Noticia</h2>
-        <form action="inserirNoticia" method="post">
+        <form action="inserirNoticia" method="post" enctype="multipart/form-data">
         	<input type="hidden" name="idUsuario" value="${jornalista.usuId}" />
-            <p><label for="cTitulo">Titulo:</label><input type="text" name="titulo" id="cTitulo" size="50" placeholder="Titulo da Notícia"/></p>
-            <p><label for="cSubtitulo">Subtítulo:</label><input type="text" name="subtitulo" id="cSubtitulo" size="50" placeholder="Subtítulo da Notícia"/></p>
-            <p><label for="cTexto">Texto:</label>
+            <p><label for="cTitulo">Titulo: </label><input type="text" name="titulo" id="cTitulo" size="50" placeholder="Titulo da Notícia"/></p>
+            <p><label for="cSubtitulo">Subtítulo: </label><input type="text" name="subtitulo" id="cSubtitulo" size="50" placeholder="Subtítulo da Notícia"/></p>
+            <p><label for="cTexto">Texto: </label>
             <textarea name="texto" id="cTexto" cols="85" rows="15" placeholder="Escreva aqui a sua Notícia"></textarea></p>
-            <p><label for="cSecao">Seção:</label>
+            <p><label for="cSecao">Seção: </label>
                 <select name="idSecao" id="cSecao">
                     <c:forEach var="s" items="${secoes}">
                     	<option value="${s.secId}">${s.titulo}</option>
                     </c:forEach>
                 </select>
             </p>
+            <p><label for="cImagem">Imagem: </label><input type="file" name="image" /></p>
             <input type="submit" value="ENVIAR"/>
         </form>
 

@@ -1,5 +1,7 @@
 package br.ufc.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -39,10 +41,10 @@ public class ClassificadosController {
 		if(session != null && cla.getTelefone()!= null && cla.getTexto() != null
 				&& cla.getTitulo() != null){
 			Usuario u = this.uDAO.recuperar(idLeitor);
-			cla.setUsuario(u);
+			cla.setU(u);
 			
 			this.claDAO.inserir(cla);
-			return "cadastroOK";
+			return "redirect:listarClassificados";
 		}
 		return "redirect:inserirClassificadoFormulario";
 	}
@@ -56,17 +58,8 @@ public class ClassificadosController {
 	}
 	
 	@RequestMapping("/apagarClassificado")
-	public String apagarClassificado(Long idCla, Long idUsuario, HttpSession session){
-		Classificados cla = this.claDAO.recuperar(idCla);
-		Usuario leitor = this.uDAO.recuperar(cla.getAutId());
-		Usuario editor = (Usuario) session.getAttribute("editor");
-		if(editor != null){
-			this.claDAO.apagar(idCla);
-			return "redirect:listarClassificados";
-		}else if(idUsuario == leitor.getUsuId()){
-			this.claDAO.apagar(idCla);
-			return "redirect:listarClassificados";
-		}
+	public String apagarClassificado(Long idCla){
+		this.claDAO.apagar(idCla);
 		return "redirect:listarClassificados";
 	}
 	
@@ -78,12 +71,9 @@ public class ClassificadosController {
 	}
 	
 	@RequestMapping("/alterarClassificado")
-	public String alterarClassificado(Classificados cla, Long idUsuario){
-		if(idUsuario == cla.getAutId()){
-			this.claDAO.alterar(cla);
-			return "redirect:listarClassificados";
-		}
-		return "redirect:alterarClassificadoFormulario";
+	public String alterarClassificado(Classificados cla){
+		this.claDAO.alterar(cla);
+		return "redirect:listarClassificados";
 	}
 	
 	@RequestMapping("/verClassificado")
@@ -93,9 +83,25 @@ public class ClassificadosController {
 		return "classificados/verClassificado";
 	}
 	
+	@RequestMapping("/inserirOfertaFormulario")
+	public String inserirOfertaFormulario(){
+		return "redirect:verClassificado";
+	}
+	
 	@RequestMapping("/inserirOferta")
-	public String inserirOferta(Classificados c, Model model){
-		return "cadastroOK";
+	public String inserirOferta(Long idCla, Long idUsuario, float valor){
+		Classificados c = this.claDAO.recuperar(idCla);
+		if(valor > this.claDAO.melhorOferta()){
+			Date date = new Date();
+			SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			f.format(date);
+			
+			c.setDataOferta(date);
+			c.setAutMelhorOferta(idUsuario);
+			c.setMelhor_oferta(valor);
+			return "redirect:verClassificado?claId=" + idCla + "";
+		}
+		return "redirect:listarClassificados";
 	}
 	
 }

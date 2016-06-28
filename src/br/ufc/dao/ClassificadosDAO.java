@@ -36,7 +36,7 @@ public class ClassificadosDAO {
 	}
 	
 	public List<Classificados> listar(){
-		String hql = "select c from CLASSIFICADOS as c";
+		String hql = "select c from CLASSIFICADOS as c order by claId desc";
 		return manager.createQuery(hql, Classificados.class).getResultList();
 	}
 	public void apagar(Long id){
@@ -49,8 +49,8 @@ public class ClassificadosDAO {
 	}
 	
 	public float melhorOferta(){
-		String hql = "select c from CLASSIFICADOS as c where c.melhor_oferta = (select max(melhor_oferta) from "
-				+ "CLASSIFICADOS as d where c.cla_id = d.cla_id)";
+		String hql = "select c from CLASSIFICADOS as c where c.melhor_oferta = (select max(d.melhor_oferta) from "
+				+ "CLASSIFICADOS as d where c.claId = d.claId)";
 		List<Classificados> classificados = manager.createQuery(hql, Classificados.class).getResultList();
 		return classificados.get(0).getMelhor_oferta();
 	}

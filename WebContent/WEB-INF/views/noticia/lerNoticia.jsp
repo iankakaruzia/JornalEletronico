@@ -41,15 +41,21 @@
                 <h3>Seção > ${noticia.secao.titulo}</h3>
                 <h1>${noticia.titulo}</h1>
                 <h1 class="subtitulo">${noticia.subtitulo}</h1>
-                <h2>por ${noticia.usuario.nome}</h2>
+                <h2>por ${noticia.u.nome}</h2>
                 <h3 class="direita">Atualizado em ${noticia.dataNoticia}</h3>
             </hgroup>
         </header>
             <p >
                 ${noticia.texto}
             </p>
-
-        <h2>Comentários</h2>
+            <c:if test="${jornalista!=null}">
+            	<c:if test="${jornalista.usuId == noticia.autId}">
+			        <a href="alterarNoticiaFormulario?idNoticia=${noticia.notId}">Alterar Notícia</a><br/>
+			        <a href="apagarNoticia?idNoticia=${noticia.notId}">Apagar Notícia</a>
+        		</c:if>
+			</c:if>
+			
+		<h2>Comentários</h2>
         <c:if test="${leitor != null}">
         	<form action="inserirComentario" method="post">
         		<input type="hidden" name="idUsuario" value="${leitor.usuId}"/>
@@ -59,21 +65,20 @@
             	<input type="submit" value="ENVIAR"/>
         	</form>
 		</c:if>
-		<input type="hidden" name="idUsuario" value="${leitor.usuId}"/>
 		<table id="tabela">
-			<c:forEach var="comentario" items="comentarios">
+			<c:forEach var="comentario" items="${comentarios}">
 				<tr>
-					<td>${comentario.usuario.nome}</td>
+					<td>${comentario.u.nome}</td>
 					<td>${comentario.texto}</td>
-					<c:if test="${comentario.usuario.usuId == leitor.usuId}">
-						<td><a href="apagarComentario?idCom=${comentario.comId}">Apagar Comentario</a></td>
+					<c:if test="${comentario.u.usuId == leitor.usuId}">
+						<td><a href="apagarComentario?idCom=${comentario.comId}">Apagar Comentario</a></td><br/>
 						<td><a href="alterarComentarioFomulario?idCom=${comentario.comId}">Apagar Comentario</a></td>
 					</c:if>
 				</tr>
 			</c:forEach>
 		
 		</table>
-		
+			
     </section>
 
     <footer id="rodape">

@@ -46,33 +46,25 @@ public class ComentariosController {
 			Noticia n = this.nDAO.recuperar(idNoticia);
 			
 			c.setNoticia(n);
-			c.setUsuario(u);
+			c.setU(u);
 			this.comDAO.inserir(c);
-			return "redirect:lerNoticia";
+			return "redirect:lerNoticia?notId="+idNoticia+"";
 		}
-		return "redirect:lerNoticia";
+		return "redirect:lerNoticia?notId="+idNoticia+"";
 	}
 	
 	@RequestMapping("/listarComentarios")
-	public String listarComentarios(Model model){
+	public String listarComentarios(Long idNoticia, Model model){
 		List<Comentarios> comentarios = this.comDAO.listar();
 		model.addAttribute("comentarios", comentarios);
-		return "redirect:lerNoticia";
+		return "redirect:lerNoticia?notId="+idNoticia+"";
 	}
 	
 	@RequestMapping("/apagarComentario")
-	public String apagarComentario(Long idCom, Long idUsuario, HttpSession session){
+	public String apagarComentario(Long idCom){
 		Comentarios c = this.comDAO.recuperar(idCom);
-		Usuario leitor = this.uDAO.recuperar(c.getAutId());
-		Usuario editor = (Usuario) session.getAttribute("editor");
-		if(editor != null){
-			this.comDAO.apagar(idCom);
-			return "redirect:lerNoticia";
-		}else if(idUsuario == leitor.getUsuId()){
-			this.comDAO.apagar(idCom);
-			return "redirect:lerNoticia";
-		}
-		return "redirect:lerNoticia";
+		this.comDAO.apagar(idCom);
+		return "redirect:lerNoticia?notId="+c.getNotId()+"";
 	}
 	
 	@RequestMapping("/alterarComentarioFormulario")
@@ -83,12 +75,9 @@ public class ComentariosController {
 	}
 	
 	@RequestMapping("/alterarComentario")
-	public String alterarComentario(Comentarios c, Long idUsuario){
-		if(idUsuario == c.getAutId()){
-			this.comDAO.alterar(c);
-			return "noticia/listarComentarios";
-		}
-		return "redirect:alterarComentarioFomrulario";
+	public String alterarComentario(Comentarios c){
+		this.comDAO.alterar(c);
+		return "redirect:lerNoticia?notId="+c.getNotId()+"";
 	}
 
 }

@@ -27,7 +27,7 @@ public class Comentarios {
 	
 	@ManyToOne(optional=false)
 	@JoinColumn(name="AUT_ID", referencedColumnName="USU_ID")
-	private Usuario usuario;
+	private Usuario u;
 	
 	@ManyToOne(optional=false)
 	@JoinColumn(name="NOT_ID", referencedColumnName="NOT_ID")
@@ -68,13 +68,13 @@ public class Comentarios {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
-
-	public Usuario getUsuario() {
-		return usuario;
+	
+	public Usuario getU() {
+		return u;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setU(Usuario u) {
+		this.u = u;
 	}
 
 	public Noticia getNoticia() {

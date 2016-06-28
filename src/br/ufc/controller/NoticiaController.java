@@ -4,6 +4,7 @@ package br.ufc.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.ufc.dao.NoticiaDAO;
 import br.ufc.dao.SecaoDAO;
@@ -18,6 +21,7 @@ import br.ufc.dao.UsuarioDAO;
 import br.ufc.model.Noticia;
 import br.ufc.model.Secao;
 import br.ufc.model.Usuario;
+import br.ufc.util.FileUtil;
 
 @Transactional
 @Controller
@@ -31,6 +35,9 @@ public class NoticiaController {
 	
 	@Autowired
 	private SecaoDAO sDAO;
+	
+	@Autowired
+	private ServletContext servletContext;
 
 	public NoticiaController() {
 		// TODO Auto-generated constructor stub
@@ -45,16 +52,22 @@ public class NoticiaController {
 	}
 	
 	@RequestMapping("/inserirNoticia")
-	public String inserirNoticia(HttpSession session, Noticia noticia, Long idSecao, Long idUsuario){
+	public String inserirNoticia(HttpSession session, Noticia noticia, Long idSecao, Long idUsuario,
+			@RequestParam(value="image", required=false) MultipartFile image){
 		if(session != null && noticia.getTitulo() != null && noticia.getSubtitulo() != null
 				&& noticia.getTexto()!= null){
 			Secao s = this.sDAO.recuperar(idSecao);
 			Usuario u = this.uDAO.recuperar(idUsuario);
 			noticia.setSecao(s);
-			noticia.setUsuario(u);
+			noticia.setU(u);
+			
+			if(image!=null && !image.isEmpty()){
+				String path = servletContext.getRealPath("/") + "resources/images/" + noticia.getTitulo() + ".jpg";
+				FileUtil.saveFile(path, image);
+			}
 			
 			this.nDAO.inserir(noticia);
-			return "cadastroOK";
+			return "redirect:inserirNoticiaFormulario";
 		}
 		return "redirect:inserirNoticiaFormulario";
 	}
@@ -70,7 +83,7 @@ public class NoticiaController {
 	public String listarNoticia(Model model){
 		List<Noticia> noticias = this.nDAO.listar();
 		model.addAttribute("nots", noticias);
-		return "redirect:home";
+		return "home";
 	}
 	
 	@RequestMapping("/lerNoticia")
@@ -81,18 +94,9 @@ public class NoticiaController {
 	}
 	
 	@RequestMapping("/apagarNoticia")
-	public String apagarNoticia(Long idNoticia, Long idUsuario, HttpSession session){
-		Noticia n = this.nDAO.recuperar(idNoticia);
-		Usuario jornalista = this.uDAO.recuperar(n.getUsuario().getUsuId());
-		Usuario editor = (Usuario) session.getAttribute("editor");
-		if(editor != null){
-			this.nDAO.apagar(idNoticia);
-			return "redirect:listarNoticia";
-		}else if(idUsuario == jornalista.getUsuId()){
-			this.nDAO.apagar(idNoticia);
-			return "redirect:listarNoticia";
-		}
-		return "redirect:lerNoticia";
+	public String apagarNoticia(Long idNoticia){
+		this.nDAO.apagar(idNoticia);
+		return "home";
 	}
 	
 	@RequestMapping("/alterarNoticiaFormulario")
@@ -103,12 +107,10 @@ public class NoticiaController {
 	}
 	
 	@RequestMapping("/alterarNoticia")
-	public String alterarNoticia(Noticia n, Long idUsuario){
-		if(idUsuario == n.getAutId()){
-			this.nDAO.alterar(n);
-			return "redirect:lerNoticia";
-		}
-		return "redirect:alterarNoticiaFormulario";
+	public String alterarNoticia(Noticia n){
+		this.nDAO.alterar(n);
+		return "redirect:lerNoticia?notId=" + n.getNotId() + "";
+		
 	}
 
 }

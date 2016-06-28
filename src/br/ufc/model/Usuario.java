@@ -40,13 +40,13 @@ public class Usuario {
 				inverseJoinColumns=@JoinColumn(name="PAP_ID", referencedColumnName="PAP_ID"))
 	private List<Papel> papeis;
 	
-	@OneToMany(mappedBy="usuario", targetEntity=Noticia.class, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="u", targetEntity=Noticia.class, fetch=FetchType.EAGER)
 	private List<Noticia> noticias;
 	
-	@OneToMany(mappedBy="usuario", targetEntity=Comentarios.class, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="u", targetEntity=Comentarios.class, fetch=FetchType.EAGER)
 	private List<Comentarios> comentarios;
 	
-	@OneToMany(mappedBy="usuario", targetEntity=Classificados.class, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="u", targetEntity=Classificados.class, fetch=FetchType.EAGER)
 	private List<Classificados> classificados;
 
 	public Usuario() {

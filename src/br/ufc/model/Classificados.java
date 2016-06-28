@@ -47,7 +47,7 @@ public class Classificados {
 	
 	@ManyToOne(optional=false)
 	@JoinColumn(name="AUT_ID", referencedColumnName="USU_ID")
-	private Usuario usuario;
+	private Usuario u;
 
 	public Classificados() {
 		// TODO Auto-generated constructor stub
@@ -116,15 +116,15 @@ public class Classificados {
 	public void setAutId(Long autId) {
 		this.autId = autId;
 	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
 	
+	public Usuario getU() {
+		return u;
+	}
+
+	public void setU(Usuario u) {
+		this.u = u;
+	}
+
 	public Long getAutMelhorOferta() {
 		return autMelhorOferta;
 	}
