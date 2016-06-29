@@ -17,7 +17,7 @@
         <img id="icone" src="resources/images/noticias0031842016155522.jpg"/>
         <nav id="menu">
             <ul>
-                <li>Home</li>
+                <li><a href="/JornalEletronico/">Home</a></li>
                 <li><a href="listarSecao">Seções</a></li>
                 <li><a href="listarClassificados">Classificados</a></li>
             </ul>
@@ -37,7 +37,7 @@
         	<input type="hidden" name="claId" value="${classificado.claId}" />
             <p><label for="cTitulo">Titulo:</label><input type="text" name="titulo" id="cTitulo" size="80" value="${classificado.titulo}"/></p>
             <p><label for="cTexto">Texto:</label>
-                <textarea name="texto" id="cTexto" cols="45" rows="8" title="${classificado.texto}"></textarea></p>
+                <textarea name="texto" id="cTexto" cols="45" rows="8">${classificado.texto}</textarea></p>
             <p><label for="cTelefone">Telefone:</label><input type="text" name="telefone" id="cTelefone" size="25" value="${classificado.telefone}"/></p>
             <p><label for="cPreco">Preço:</label><input type="text" name="preco" id="cPreco" size="15" value="${classificado.preco}"/></p>
             <input type="submit" value="ALTERAR"/>

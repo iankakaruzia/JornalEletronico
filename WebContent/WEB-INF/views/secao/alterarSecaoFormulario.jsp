@@ -17,9 +17,9 @@
         <img id="icone" src="resources/images/noticias0031842016155522.jpg"/>
         <nav id="menu">
             <ul>
-                <li>Home</li>
-                <li>Seções</li>
-                <li>Classificados</li>
+                <li><a href="/JornalEletronico/">Home</a></li>
+                <li><a href="listarSecao">Seções</a></li>
+                <li><a href="listarClassificados">Classificados</a></li>
             </ul>
         </nav>
         <nav id="login">
@@ -31,7 +31,7 @@
         </nav>
     </header>
     <section id="corpo-full">
-        <h2>Inserir Seção</h2>
+        <h2>Alterar Seção</h2>
         <form action="alterarSecao" method="post">
         	<input type="hidden" name="secId" value="${secao.secId}"/>
             <p><label for="cTitulo">Titulo:</label><input type="text" name="titulo" id="cTitulo" size="50" value="${secao.titulo}"/></p>

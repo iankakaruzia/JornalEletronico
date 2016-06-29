@@ -62,7 +62,7 @@ public class NoticiaController {
 			noticia.setU(u);
 			
 			if(image!=null && !image.isEmpty()){
-				String path = servletContext.getRealPath("/") + "resources/images/" + noticia.getTitulo() + ".jpg";
+				String path = servletContext.getRealPath("/")+"resources/images/"+noticia.getTitulo()+".jpg";
 				FileUtil.saveFile(path, image);
 			}
 			
@@ -82,7 +82,7 @@ public class NoticiaController {
 	@RequestMapping("/listarNoticia")
 	public String listarNoticia(Model model){
 		List<Noticia> noticias = this.nDAO.listar();
-		model.addAttribute("nots", noticias);
+		model.addAttribute("news", noticias);
 		return "home";
 	}
 	

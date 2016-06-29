@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.ufc.dao.ClassificadosDAO;
 import br.ufc.dao.UsuarioDAO;
 import br.ufc.model.Classificados;
 import br.ufc.model.Usuario;
+import br.ufc.util.FileUtil;
 
 @Transactional
 @Controller
@@ -26,6 +30,9 @@ public class ClassificadosController {
 	
 	@Autowired
 	private ClassificadosDAO claDAO;
+	
+	@Autowired
+	private ServletContext servletContext;
 
 	public ClassificadosController() {
 		// TODO Auto-generated constructor stub
@@ -37,11 +44,17 @@ public class ClassificadosController {
 	}
 	
 	@RequestMapping("/inserirClassificado")
-	public String inserirClassificado(HttpSession session, Classificados cla, Long idLeitor){
+	public String inserirClassificado(HttpSession session, Classificados cla, Long idLeitor,
+			@RequestParam(value="image", required=false) MultipartFile image){
 		if(session != null && cla.getTelefone()!= null && cla.getTexto() != null
 				&& cla.getTitulo() != null){
 			Usuario u = this.uDAO.recuperar(idLeitor);
 			cla.setU(u);
+			
+			if(image!=null && !image.isEmpty()){
+				String path = servletContext.getRealPath("/")+"resources/images/"+cla.getTitulo()+".jpg";
+				FileUtil.saveFile(path, image);
+			}
 			
 			this.claDAO.inserir(cla);
 			return "redirect:listarClassificados";
@@ -72,6 +85,16 @@ public class ClassificadosController {
 	
 	@RequestMapping("/alterarClassificado")
 	public String alterarClassificado(Classificados cla){
+		Classificados ref = this.claDAO.recuperar(cla.getClaId());
+		Usuario autor = this.uDAO.recuperar(ref.getAutId());
+		cla.setU(autor);
+		if(ref.getAutMelhorOferta() != null){
+			Usuario autM = this.uDAO.recuperar(ref.getAutMelhorOferta());
+			cla.setAutMelhorOferta(autM.getUsuId());
+			cla.setDataOferta(ref.getDataOferta());
+			cla.setMelhor_oferta(ref.getMelhor_oferta());
+		}
+		
 		this.claDAO.alterar(cla);
 		return "redirect:listarClassificados";
 	}
@@ -99,7 +122,7 @@ public class ClassificadosController {
 			c.setDataOferta(date);
 			c.setAutMelhorOferta(idUsuario);
 			c.setMelhor_oferta(valor);
-			return "redirect:verClassificado?claId=" + idCla + "";
+			return "redirect:verClassificado?claId="+idCla+"";
 		}
 		return "redirect:listarClassificados";
 	}

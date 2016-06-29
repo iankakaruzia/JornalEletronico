@@ -74,7 +74,6 @@ nav#menu li{
 
 nav#menu li:hover{
     background-color: #606060;
-
 }
 
 /*MENU DO USUARIO*/
@@ -108,6 +107,57 @@ section#corpo{
     padding-right: 15px;
 }
 
+section#corpo img#imgCla{
+	max-width:450px;
+    max-height:400px;
+    width: auto;
+    height: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.6);
+}
+
+section#corpo ul{
+    list-style: none;
+}
+
+section#corpo ul li div#titulo h1{
+    font-size: 18pt;
+    margin: 0px;
+}
+
+section#corpo ul li div#titulo h3{
+    color: #606060;
+    font-size: 13pt;
+    margin: 0px;
+    text-indent: 35px;
+}
+
+section#corpo ul li div#titulo a{
+    font-size: 12pt;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    color: #888888;
+}
+
+section#corpo ul li div#titulo img#imgLista{
+    float: left;
+    position: relative;
+    max-width:200px;
+    max-height:150px;
+    width: auto;
+    height: auto;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+section#corpo ul li{
+	border-bottom: 1px dashed #606060;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	
+}
+
 table#tabela{
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -126,8 +176,7 @@ table#tabela td{
 }
 
 section#corpo-full ul{
-    list-style: disc;
-    border-bottom: 1px dashed black;
+    list-style: none;
 }
 
 section#corpo-full ul li div#titulo h1{
@@ -147,6 +196,24 @@ section#corpo-full ul li div#titulo a{
     margin-top: 0px;
     margin-bottom: 10px;
     color: #888888;
+}
+
+section#corpo-full ul li div#titulo img#imgLista{
+    float: left;
+    position: relative;
+    max-width:200px;
+    max-height:150px;
+    width: auto;
+    height: auto;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+section#corpo-full ul li{
+	border-bottom: 1px dashed #606060;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	
 }
 
 header#noticia h1{
@@ -177,6 +244,10 @@ header#noticia h3{
     color: #606060;
 }
 
+section#corpo-full img#imgNoticia{
+	box-shadow: 1px 1px 1px rgba(0,0,0,.6);
+}
+
 aside#lateral{
     text-align: center;
     display: block;
@@ -197,7 +268,7 @@ aside#lateral a{
 }
 
 footer#rodape{
-	margin-top: 15px;
+	margin-top: 30px;
     clear: both;
     border-top: 1px solid #606060;
 }

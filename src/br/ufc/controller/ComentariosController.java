@@ -54,10 +54,10 @@ public class ComentariosController {
 	}
 	
 	@RequestMapping("/listarComentarios")
-	public String listarComentarios(Long idNoticia, Model model){
+	public String listarComentarios(Model model){
 		List<Comentarios> comentarios = this.comDAO.listar();
 		model.addAttribute("comentarios", comentarios);
-		return "redirect:lerNoticia?notId="+idNoticia+"";
+		return "redirect:lerNoticia";
 	}
 	
 	@RequestMapping("/apagarComentario")
@@ -76,6 +76,13 @@ public class ComentariosController {
 	
 	@RequestMapping("/alterarComentario")
 	public String alterarComentario(Comentarios c){
+		Comentarios ref = this.comDAO.recuperar(c.getComId());
+		Usuario u = this.uDAO.recuperar(ref.getAutId());
+		Noticia n = this.nDAO.recuperar(ref.getNotId());
+		
+		c.setU(u);
+		c.setNoticia(n);
+		
 		this.comDAO.alterar(c);
 		return "redirect:lerNoticia?notId="+c.getNotId()+"";
 	}

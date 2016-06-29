@@ -17,9 +17,9 @@
         <img id="icone" src="resources/images/noticias0031842016155522.jpg"/>
         <nav id="menu">
             <ul>
-                <li>Home</li>
-                <li>Seções</li>
-                <li>Classificados</li>
+                <li><a href="/JornalEletronico/">Home</a></li>
+                <li><a href="listarSecao">Seções</a></li>
+                <li><a href="listarClassificados">Classificados</a></li>
             </ul>
         </nav>
         <nav id="login">
@@ -35,9 +35,13 @@
 			<c:forEach var="noticia" items="${noticias}">
 				 <li>
 				  <div id="titulo">
+				  	<img id="imgLista" src="<c:url value="resources/images/${noticia.titulo}.jpg" />" />
+				  	<br/>
 				     <h1> ${noticia.titulo}  </h1>  
 	                 <h3> ${noticia.subtitulo}</h3> <br>     
-	                 <a href="lerNoticia?notId=${noticia.notId}"> Ler Noticia Completa</a> <br>
+	                 <a href="lerNoticia?notId=${noticia.notId}"> Ler Noticia Completa</a> <br/>
+	                 <br/>
+	                 <br/>
 	              </div>
 				 </li>
 			</c:forEach>

@@ -16,7 +16,7 @@
         <img id="icone" src="resources/images/noticias0031842016155522.jpg"/>
         <nav id="menu">
             <ul>
-                <li>Home</li>
+                <li><a href="/JornalEletronico/">Home</a></li>
                 <li><a href="listarSecao">Seções</a></li>
                 <li><a href="listarClassificados">Classificados</a></li>
             </ul>
@@ -42,6 +42,9 @@
                 <h2>por ${classificados.u.nome}</h2>
             </hgroup>
         </header>
+        <div align="center">
+        	<img id="imgCla" src="<c:url value="resources/images/${classificados.titulo}.jpg" />" />
+        </div>
             <p>
                 ${classificados.texto}
             </p>
@@ -50,7 +53,7 @@
 		<c:if test="${leitor!=null}">
 			<c:if test="${leitor.usuId == classificados.autId}">
 				<a href="alterarClassificadoFormulario?idCla=${classificados.claId}">Alterar Classificado</a><br />
-				<a href="apagarClassificado?">Apagar Classificado</a>
+				<a href="apagarClassificado?idCla=${classificados.claId}">Apagar Classificado</a>
 			</c:if>
         </c:if>
     </section>

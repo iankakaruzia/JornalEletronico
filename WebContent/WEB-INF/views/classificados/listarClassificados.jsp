@@ -17,7 +17,7 @@
         <img id="icone" src="resources/images/noticias0031842016155522.jpg"/>
         <nav id="menu">
             <ul>
-                <li>Home</li>
+                <li><a href="/JornalEletronico/">Home</a></li>
                 <li><a href="listarSecao">Seções</a></li>
                 <li><a href="listarClassificados">Classificados</a></li>
             </ul>
@@ -35,9 +35,13 @@
 			<c:forEach var="c" items="${classificados}">
 			<li>
 				<div id="titulo">
+				<img id="imgLista" src="<c:url value="resources/images/${c.titulo}.jpg" />" /><br/>
 			     <h1> ${c.titulo}  </h1>
 			     <h3>Preço: R$ ${c.preco}</h3>  
-                 <a href="verClassificado?claId=${c.claId}">Visualizar Classificado</a> <br>
+			     <h3>por ${c.u.nome}</h3>
+                 <a href="verClassificado?claId=${c.claId}">Visualizar Classificado</a> <br/>
+                 <br/>
+                 <br/>
               </div>
              </li>
 			</c:forEach>

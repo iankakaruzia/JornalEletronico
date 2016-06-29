@@ -17,7 +17,7 @@
         <img id="icone" src="resources/images/noticias0031842016155522.jpg"/>
         <nav id="menu">
             <ul>
-                <li><a href="/">Home</a></li>
+                <li><a href="/JornalEletronico/">Home</a></li>
                 <li><a href="listarSecao">Seções</a></li>
                 <li><a href="listarClassificados">Classificados</a></li>
             </ul>

@@ -17,7 +17,7 @@
         <img id="icone" src="resources/images/noticias0031842016155522.jpg"/>
         <nav id="menu">
             <ul>
-                <li>Home</li>
+                <li><a href="/JornalEletronico/">Home</a></li>
                 <li><a href="listarSecao">Seções</a></li>
                 <li><a href="listarClassificados">Classificados</a></li>
             </ul>
@@ -32,13 +32,14 @@
     </header>
     <section id="corpo-full">
         <h2>Inserir Classificado</h2>
-        <form action="inserirClassificado" method="post">
+        <form action="inserirClassificado" method="post" enctype="multipart/form-data">
         	<input type="hidden" name="idLeitor" value="${leitor.usuId}" />
-            <p><label for="cTitulo">Titulo:</label><input type="text" name="titulo" id="cTitulo" size="80" placeholder="Titulo do Classificado"/></p>
-            <p><label for="cTexto">Texto:</label>
+            <p><label for="cTitulo">Titulo: </label><input type="text" name="titulo" id="cTitulo" size="80" placeholder="Titulo do Classificado"/></p>
+            <p><label for="cTexto">Texto: </label>
                 <textarea name="texto" id="cTexto" cols="45" rows="8" placeholder="Escreva aqui o texto do seu classificado"></textarea></p>
-            <p><label for="cTelefone">Telefone:</label><input type="text" name="telefone" id="cTelefone" size="25" placeholder="Telefone para Contato"/></p>
-            <p><label for="cPreco">Preço:</label><input type="text" name="preco" id="cPreco" size="15" placeholder="Preço"/></p>
+            <p><label for="cTelefone">Telefone: </label><input type="text" name="telefone" id="cTelefone" size="25" placeholder="Telefone para Contato"/></p>
+            <p><label for="cPreco">Preço: </label><input type="text" name="preco" id="cPreco" size="15" placeholder="Preço"/></p>
+            <p><label for="cImage">Imagem: </label><input type="file" name="image" /></p>
             <input type="submit" value="ENVIAR"/>
         </form>
 

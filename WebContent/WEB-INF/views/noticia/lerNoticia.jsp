@@ -17,9 +17,9 @@
         <img id="icone" src="resources/images/noticias0031842016155522.jpg"/>
         <nav id="menu">
             <ul>
-                <li>Home</li>
-                <li>Seções</li>
-                <li>Classificados</li>
+                <li><a href="/JornalEletronico/">Home</a></li>
+                <li><a href="listarSecao">Seções</a></li>
+                <li><a href="listarClassificados">Classificados</a></li>
             </ul>
         </nav>
         <nav id="login">
@@ -45,6 +45,9 @@
                 <h3 class="direita">Atualizado em ${noticia.dataNoticia}</h3>
             </hgroup>
         </header>
+        <div align="center">
+        	<img id="imgNoticia" src="<c:url value="resources/images/${noticia.titulo}.jpg" />"/>
+        </div>    
             <p >
                 ${noticia.texto}
             </p>
@@ -60,7 +63,7 @@
         	<form action="inserirComentario" method="post">
         		<input type="hidden" name="idUsuario" value="${leitor.usuId}"/>
         		<input type="hidden" name="idNoticia" value="${noticia.notId}"/>
-            	<p><label for="cTexto">Comentario:</label>
+            	<p><label for="cTexto">Comentário:</label>
             	<textarea name="texto" id="cTexto" cols="30" rows="5" placeholder="Escreva aqui o seu Comentário."></textarea></p>
             	<input type="submit" value="ENVIAR"/>
         	</form>
@@ -71,12 +74,11 @@
 					<td>${comentario.u.nome}</td>
 					<td>${comentario.texto}</td>
 					<c:if test="${comentario.u.usuId == leitor.usuId}">
-						<td><a href="apagarComentario?idCom=${comentario.comId}">Apagar Comentario</a></td><br/>
-						<td><a href="alterarComentarioFomulario?idCom=${comentario.comId}">Apagar Comentario</a></td>
+						<td><a href="apagarComentario?idCom=${comentario.comId}">Apagar Comentário</a></td><br/>
+						<td><a href="alterarComentarioFomulario?idCom=${comentario.comId}">Apagar Comentário</a></td>
 					</c:if>
 				</tr>
 			</c:forEach>
-		
 		</table>
 			
     </section>
