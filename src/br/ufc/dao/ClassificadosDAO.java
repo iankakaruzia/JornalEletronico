@@ -39,6 +39,7 @@ public class ClassificadosDAO {
 		String hql = "select c from CLASSIFICADOS as c order by claId desc";
 		return manager.createQuery(hql, Classificados.class).getResultList();
 	}
+	
 	public void apagar(Long id){
 		Classificados ref = this.recuperar(id);
 		manager.remove(ref);

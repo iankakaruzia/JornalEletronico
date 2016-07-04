@@ -31,11 +31,11 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<bean id="comDAO" class="br.ufc.dao.ComentariosDAO" />
 	<bean id="claDAO" class="br.ufc.dao.ClassificadosDAO" />
 	
-	<!--  
+	 
 	<mvc:interceptors>
 		<bean class="br.ufc.interceptor.AutorizadorInterceptor"/>
 	</mvc:interceptors>
-	-->
+	
 	<bean id="mysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/jornal_eletronico" />

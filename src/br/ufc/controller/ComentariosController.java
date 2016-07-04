@@ -54,10 +54,10 @@ public class ComentariosController {
 	}
 	
 	@RequestMapping("/listarComentarios")
-	public String listarComentarios(Model model){
-		List<Comentarios> comentarios = this.comDAO.listar();
+	public String listarComentarios(Noticia n, Model model){
+		List<Comentarios> comentarios = this.comDAO.listarComentarioNoticia(n.getNotId());
 		model.addAttribute("comentarios", comentarios);
-		return "redirect:lerNoticia";
+		return "comentarios/listarComentarios";
 	}
 	
 	@RequestMapping("/apagarComentario")

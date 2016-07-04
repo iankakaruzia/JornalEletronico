@@ -88,12 +88,12 @@ public class ClassificadosController {
 		Classificados ref = this.claDAO.recuperar(cla.getClaId());
 		Usuario autor = this.uDAO.recuperar(ref.getAutId());
 		cla.setU(autor);
-		if(ref.getAutMelhorOferta() != null){
+		//if(ref.getAutMelhorOferta() != null){
 			Usuario autM = this.uDAO.recuperar(ref.getAutMelhorOferta());
 			cla.setAutMelhorOferta(autM.getUsuId());
 			cla.setDataOferta(ref.getDataOferta());
 			cla.setMelhor_oferta(ref.getMelhor_oferta());
-		}
+		//}
 		
 		this.claDAO.alterar(cla);
 		return "redirect:listarClassificados";

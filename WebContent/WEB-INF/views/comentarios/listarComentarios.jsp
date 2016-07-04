@@ -1,13 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Inserir Seção</title>
-    <link rel="stylesheet" type="text/css" href="resources/css/estilos.css"/>
-    <link rel="stylesheet" type="text/css" href="resources/css/formularios.css"/>
+	<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1"/>
+	<title>Listar ComentÃ¡rios</title>
+	<link href="resources/css/estilos.css" rel="stylesheet">
+	<link href="resources/css/formularios.css" rel="stylesheet">
 </head>
 <body>
 
@@ -18,7 +18,7 @@
         <nav id="menu">
             <ul>
                 <li><a href="/JornalEletronico/">Home</a></li>
-                <li><a href="listarSecao">Seções</a></li>
+                <li><a href="listarSecao">SeÃ§Ãµes</a></li>
                 <li><a href="listarClassificados">Classificados</a></li>
             </ul>
         </nav>
@@ -34,20 +34,27 @@
             </ul>
         </nav>
     </header>
-    <section id="corpo-full">
-        <h2>Inserir Seção</h2>
-        <form action="inserirSecao" method="post">
-            <p><label for="cTitulo">Titulo:</label><input type="text" name="titulo" id="cTitulo" size="50" placeholder="Titulo da Seção"/></p>
-            <p><label for="cDescricao">Descrição:</label>
-            <textarea name="descricao" id="cDescricao" rows="3" cols="30" placeholder="Descrição da Seção"></textarea></p>
-            <input type="submit" value="ENVIAR"/>
-        </form>
-
+	<section id="corpo-full">
+	<div id="comentarios">
+        <c:forEach var="c" items="${comentarios}">
+			<h2>Autor: ${c.u.nome}</h2>
+			<h3>ComentÃ¡rio: ${c.texto}</h3>
+			<c:if test="${not empty leitor}">
+				<c:if test="${c.autId == leitor.usuId}">
+					<a href="apagarComentario?idCom=${c.comId}">Apagar Comentario</a>
+					<br/>
+				</c:if>
+			</c:if>
+		</c:forEach>
+	</div>
+	
+	<br/>
+	<!--<a href="lerNoticia?notId=${c.notId}">Voltar para NotÃ­cia</a>-->
     </section>
 
     <footer id="rodape">
-        <p>UFC - Universidade Federal do Ceará <br/>
-            por Ianka Karúzia</p>
+        <p>UFC - Universidade Federal do CearÃ¡ <br/>
+            por Ianka KarÃºzia</p>
     </footer>
 </div>
 </body>

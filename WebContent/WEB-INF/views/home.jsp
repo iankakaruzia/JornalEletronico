@@ -22,11 +22,11 @@
         </nav>
         <nav id="login">
             <ul>
-            	<c:if test="${usuario == null}">
+            	<c:if test="${empty leitor or empty jornalista or empty editor}">
                 	<li><a href="loginUsuarioFormulario">Logar-se</a></li>
                 	<li><a href="inserirLeitorFormulario">Cadastrar-se</a></li>
                 </c:if>
-                <c:if test="${usuario!=null}">
+                <c:if test="${not empty leitor or not empty jornalista or not empty editor}">
                 	<li><a href="logout">Sair do Jornal</a></li>
                 </c:if>
             </ul>
@@ -35,6 +35,7 @@
 
     <section id="corpo">
         <h2>Manchetes</h2>	
+        <div>
 		<ul>
 			<c:forEach var="noticia" items="${news}">
 				 <li>
@@ -50,6 +51,7 @@
 				 </li>
 			</c:forEach>
 		</ul>
+		</div>
     </section>
 
     <aside id="lateral">

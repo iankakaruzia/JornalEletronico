@@ -24,11 +24,11 @@
         </nav>
         <nav id="login">
             <ul>
-            	<c:if test="${usuario == null}">
+            	<c:if test="${empty leitor or empty jornalista or empty editor}">
                 	<li><a href="loginUsuarioFormulario">Logar-se</a></li>
                 	<li><a href="inserirLeitorFormulario">Cadastrar-se</a></li>
                 </c:if>
-                <c:if test="${usuario!=null}">
+                <c:if test="${not empty leitor or not empty jornalista or not empty editor}">
                 	<li><a href="logout">Sair do Jornal</a></li>
                 </c:if>
             </ul>
@@ -57,30 +57,22 @@
 			        <a href="apagarNoticia?idNoticia=${noticia.notId}">Apagar Notícia</a>
         		</c:if>
 			</c:if>
+			<c:if test="${editor!=null}">
+				<a href="apagarNoticia?idNoticia=${noticia.notId}">Apagar Notícia</a>
+			</c:if>
 			
 		<h2>Comentários</h2>
-        <c:if test="${leitor != null}">
-        	<form action="inserirComentario" method="post">
-        		<input type="hidden" name="idUsuario" value="${leitor.usuId}"/>
-        		<input type="hidden" name="idNoticia" value="${noticia.notId}"/>
-            	<p><label for="cTexto">Comentário:</label>
-            	<textarea name="texto" id="cTexto" cols="30" rows="5" placeholder="Escreva aqui o seu Comentário."></textarea></p>
-            	<input type="submit" value="ENVIAR"/>
-        	</form>
-		</c:if>
-		<table id="tabela">
-			<c:forEach var="comentario" items="${comentarios}">
-				<tr>
-					<td>${comentario.u.nome}</td>
-					<td>${comentario.texto}</td>
-					<c:if test="${comentario.u.usuId == leitor.usuId}">
-						<td><a href="apagarComentario?idCom=${comentario.comId}">Apagar Comentário</a></td><br/>
-						<td><a href="alterarComentarioFomulario?idCom=${comentario.comId}">Apagar Comentário</a></td>
-					</c:if>
-				</tr>
-			</c:forEach>
-		</table>
-			
+	        <c:if test="${leitor != null}">
+	        	<form action="inserirComentario" method="post">
+	        		<input type="hidden" name="idUsuario" value="${leitor.usuId}"/>
+	        		<input type="hidden" name="idNoticia" value="${noticia.notId}"/>
+	            	<p><label for="cTexto">Comentário: </label>
+	            	<textarea name="texto" id="cTexto" cols="30" rows="5" placeholder="Escreva aqui o seu Comentário."></textarea></p>
+	            	<input type="submit" value="ENVIAR"/>
+	        	</form>
+			</c:if>
+			<br/>
+		<a href="listarComentarios?notId=${noticia.notId}">-Listar Comentarios</a><br/>
     </section>
 
     <footer id="rodape">

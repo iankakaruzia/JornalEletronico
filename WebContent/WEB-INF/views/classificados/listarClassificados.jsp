@@ -24,9 +24,13 @@
         </nav>
         <nav id="login">
             <ul>
-                <li>Logar-se</li>
-                <li>Cadastrar-se</li>
-                <li>Sair</li>
+                <c:if test="${empty leitor or empty jornalista or empty editor}">
+                	<li><a href="loginUsuarioFormulario">Logar-se</a></li>
+                	<li><a href="inserirLeitorFormulario">Cadastrar-se</a></li>
+                </c:if>
+                <c:if test="${not empty leitor or not empty jornalista or not empty editor}">
+                	<li><a href="logout">Sair do Jornal</a></li>
+                </c:if>
             </ul>
         </nav>
     </header>
@@ -35,7 +39,7 @@
 			<c:forEach var="c" items="${classificados}">
 			<li>
 				<div id="titulo">
-				<img id="imgLista" src="<c:url value="resources/images/${c.titulo}.jpg" />" /><br/>
+				<img id="imgLista" src="<c:url value="resources/images/${c.titulo}.jpg" />"/><br/>
 			     <h1> ${c.titulo}  </h1>
 			     <h3>Preço: R$ ${c.preco}</h3>  
 			     <h3>por ${c.u.nome}</h3>

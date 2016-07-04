@@ -107,7 +107,7 @@ section#corpo{
     padding-right: 15px;
 }
 
-section#corpo img#imgCla{
+section#corpo div img#imgCla{
 	max-width:450px;
     max-height:400px;
     width: auto;
@@ -209,6 +209,14 @@ section#corpo-full ul li div#titulo img#imgLista{
     margin-bottom: 20px;
 }
 
+section#corpo-full table#tabela tr td img#imgListaUsuario{
+    float: left;
+    max-width:150px;
+    max-height:100px;
+    width: auto;
+    height: auto;
+}
+
 section#corpo-full ul li{
 	border-bottom: 1px dashed #606060;
 	margin-top: 20px;
@@ -246,6 +254,25 @@ header#noticia h3{
 
 section#corpo-full img#imgNoticia{
 	box-shadow: 1px 1px 1px rgba(0,0,0,.6);
+}
+
+section#corpo-full div#comentarios a{
+	margin-top: 0px;
+	color: #888888;
+}
+
+section#corpo-full div#comentarios h2{
+	margin-top: 10px;
+	margin-bottom: 0px;
+	font-size: 13pt;
+	color: rgba(0,0,0,.9);
+}
+
+section#corpo-full div#comentarios h3{
+	font-size: 12pt;
+	text-indent: 30px;
+	margin-top: 0px;
+	color: rgba(0,0,0,.7);
 }
 
 aside#lateral{

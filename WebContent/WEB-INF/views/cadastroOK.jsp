@@ -9,7 +9,7 @@
 <body>
 	<!-- ISO-8859-1 MUDAR O UTF-8-->
 	<h2>Cadastro Realizado com Sucesso</h2>
-	<a href="/">Voltar para Página Inicial</a>
+	<a href="/JornalEletronico/">Voltar para Página Inicial</a>
 	
 </body>
 </html>

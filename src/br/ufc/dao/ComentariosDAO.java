@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -28,8 +29,15 @@ public class ComentariosDAO {
 	}
 	
 	public List<Comentarios> listar(){
-		String hql = "select c from COMENTARIOS as c";
+		String hql = "select c from COMENTARIOS as c order by comId desc";
 		return manager.createQuery(hql, Comentarios.class).getResultList();
+	}
+	
+	public List<Comentarios> listarComentarioNoticia(Long id){
+		String hql = "select c from COMENTARIOS as c where not_id=:varNoticia order by comId desc";
+		Query query = manager.createQuery(hql);
+		List<Comentarios> comentarios = query.setParameter("varNoticia", id).getResultList();
+		return comentarios;
 	}
 	
 	public void apagar(Long id){

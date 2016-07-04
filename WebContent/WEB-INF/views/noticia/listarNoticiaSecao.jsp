@@ -24,8 +24,12 @@
         </nav>
         <nav id="login">
             <ul>
-                <c:if test="${editor!=null}">
-                	<li><a href="logout">Sair</a></li>
+                <c:if test="${empty leitor or empty jornalista or empty editor}">
+                	<li><a href="loginUsuarioFormulario">Logar-se</a></li>
+                	<li><a href="inserirLeitorFormulario">Cadastrar-se</a></li>
+                </c:if>
+                <c:if test="${not empty leitor or not empty jornalista or not empty editor}">
+                	<li><a href="logout">Sair do Jornal</a></li>
                 </c:if>
             </ul>
         </nav>
@@ -35,7 +39,7 @@
 			<c:forEach var="noticia" items="${noticias}">
 				 <li>
 				  <div id="titulo">
-				  	<img id="imgLista" src="<c:url value="resources/images/${noticia.titulo}.jpg" />" />
+				  	<img id="imgLista" src="<c:url value="resources/images/${noticia.titulo}.jpg" />"/>
 				  	<br/>
 				     <h1> ${noticia.titulo}  </h1>  
 	                 <h3> ${noticia.subtitulo}</h3> <br>     

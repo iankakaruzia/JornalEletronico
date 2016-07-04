@@ -23,11 +23,11 @@
         </nav>
         <nav id="login">
             <ul>
-            	<c:if test="${leitor == null}">
+            	<c:if test="${empty leitor or empty jornalista or empty editor}">
                 	<li><a href="loginUsuarioFormulario">Logar-se</a></li>
                 	<li><a href="inserirLeitorFormulario">Cadastrar-se</a></li>
                 </c:if>
-                <c:if test="${leitor!=null}">
+                <c:if test="${not empty leitor or not empty jornalista or not empty editor}">
                 	<li><a href="logout">Sair do Jornal</a></li>
                 </c:if>
             </ul>	
@@ -43,7 +43,7 @@
             </hgroup>
         </header>
         <div align="center">
-        	<img id="imgCla" src="<c:url value="resources/images/${classificados.titulo}.jpg" />" />
+        	<img id="imgCla" src="<c:url value="resources/images/${classificados.titulo}.jpg" />"/>
         </div>
             <p>
                 ${classificados.texto}

@@ -16,19 +16,19 @@
         <img id="icone" src="resources/images/noticias0031842016155522.jpg"/>
         <nav id="menu">
             <ul>
-                <li>Home</li>
+                <li><a href="/JornalEletronico/">Home</a></li>
                 <li><a href="listarSecao">Seções</a></li>
                 <li><a href="listarClassificados">Classificados</a></li>
             </ul>
         </nav>
         <nav id="login">
             <ul>
-                <c:if test="${usuario == null}">
+                <c:if test="${empty leitor or empty jornalista or empty editor}">
                 	<li><a href="loginUsuarioFormulario">Logar-se</a></li>
                 	<li><a href="inserirLeitorFormulario">Cadastrar-se</a></li>
                 </c:if>
-                <c:if test="${usuario!=null}">
-                	<li><a href="logout">Sair</a></li>
+                <c:if test="${not empty leitor or not empty jornalista or not empty editor}">
+                	<li><a href="logout">Sair do Jornal</a></li>
                 </c:if>
             </ul>
         </nav>

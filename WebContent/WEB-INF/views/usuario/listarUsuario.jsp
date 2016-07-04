@@ -24,8 +24,12 @@
         </nav>
         <nav id="login">
             <ul>
-                <c:if test="${editor!=null}">
-                	<li><a href="logout">Sair</a></li>
+                <c:if test="${empty leitor or empty jornalista or empty editor}">
+                	<li><a href="loginUsuarioFormulario">Logar-se</a></li>
+                	<li><a href="inserirLeitorFormulario">Cadastrar-se</a></li>
+                </c:if>
+                <c:if test="${not empty leitor or not empty jornalista or not empty editor}">
+                	<li><a href="logout">Sair do Jornal</a></li>
                 </c:if>
             </ul>
         </nav>
@@ -38,6 +42,7 @@
 					<td>${usuario.nome}</td>
 					<td>${usuario.login}</td>
 					<td>${usuario.email}</td>
+					<td><img id="imgListaUsuario" src="<c:url value="resources/images/${usuario.login}.jpg" />"/></td>
 					<td><a href="apagarUsuario?idUsuario=${usuario.usuId}">Apagar Usuário</a></td>
 				</tr>
 			</c:forEach>
