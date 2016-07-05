@@ -23,13 +23,17 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter{
 			return true;
 		}
 		if(request.getSession().getAttribute("editor")!=null && (uri.endsWith("inserirSecaoFormulario") 
-				|| uri.endsWith("inserirJornalistaFormulario") || uri.endsWith("listarUsuario"))){
+				|| uri.endsWith("inserirJornalistaFormulario") || uri.endsWith("listarUsuario")
+				|| uri.endsWith("inserirSecao") || uri.endsWith("inserirJornalista"))){
 			return true;
 		}
-		if(request.getSession().getAttribute("jornalista")!=null && uri.endsWith("inserirNoticiaFormulario")){
+		if(request.getSession().getAttribute("jornalista")!=null && (uri.endsWith("inserirNoticiaFormulario")
+				|| uri.endsWith("inserirNoticia"))){
 			return true;
 		}
-		if(request.getSession().getAttribute("leitor")!=null && uri.endsWith("inserirClassificadoFormulario")){
+		if(request.getSession().getAttribute("leitor")!=null && (uri.endsWith("inserirClassificadoFormulario")
+				|| uri.endsWith("inserirClassificado") || uri.endsWith("inserirOferta")
+				|| uri.endsWith("inserirComentario"))){
 			return true;
 		}
 		if(uri.equals("/JornalEletronico/resources/css/estilos.css") || uri.contains("resources/images/")
